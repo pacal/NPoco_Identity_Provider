@@ -33,7 +33,7 @@ namespace Pacal.NPoco_Idenity_Provider
         {
             if (role == null)
             {
-                throw new ArgumentNullException("user");
+                throw new ArgumentNullException("role");
             }
 
             roleTable.Update(role);
