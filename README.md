@@ -24,7 +24,8 @@ To run the tests update the connection string to point to your test database whi
 ### Installing the Identity Schema.
 The NPoco Identity provider relies on the Microsoft Identity schema. When you start a new project in Visual Studio and use the WebApplication template with "Individual User Account" option, it will create a SQL Server compact edition file and update the connection string. When you create register a new user for the first time, the backing Entity Framework provider will initialize the table schema. 
 
-Option 1:
+__Option 1:__
+
 The simplest way to grab the schema is to use this template, create an empty project and copy the MDF file located within "App_Data" directory. You can copy and rename the DB do your new NPoco Identity project.
 <image>
 
