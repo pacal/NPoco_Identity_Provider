@@ -29,6 +29,6 @@ __Option 1:__
 The simplest way to grab the schema is to use the MVC/Webforms template, create an empty project and copy the MDF file located within "App_Data" directory. You can copy and rename the DB do your new NPoco Identity project.
 
 __Option 2:__
-You can use the SQL scripts located in the repo [Identity_SQL](https:https://github.com/pacal/Identity_SQL "Identity_SQL creation scripts"). Edit the variables at the top for the database name and filepath. Fire up SQL Management studio and run it against the server. It will create the database and all needed tables.
+You can use the SQL scripts located in the repo [Identity_SQL](https://github.com/pacal/Identity_SQL "Identity_SQL creation scripts"). Edit the variables at the top for the database name and filepath. Fire up SQL Management studio and run it against the server. It will create the database and all needed tables.
 
 
