@@ -8,7 +8,7 @@ using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserStore<TUser> : IUserLoginStore<TUser>,
+    public class UserStore<TUser, TRole> : IUserLoginStore<TUser>,
         IUserClaimStore<TUser>,
         IUserRoleStore<TUser>,
         IUserPasswordStore<TUser>,
@@ -19,9 +19,10 @@ namespace Pacal.NPoco_Idenity_Provider
         IUserLockoutStore<TUser, string>,
         IUserStore<TUser>
         where TUser : IdentityUser
+        where TRole : IdentityRole
     {
         private UserTable<TUser> userTable;
-        private RoleTable roleTable;
+        private RoleTable<TRole> roleTable;
         private UserRolesTable userRolesTable;
         private UserClaimsTable userClaimsTable;
         private UserLoginsTable userLoginsTable;
@@ -31,7 +32,7 @@ namespace Pacal.NPoco_Idenity_Provider
         {
             Database = database;
             userTable = new UserTable<TUser>(database);
-            roleTable = new RoleTable(database);
+            roleTable = new RoleTable<TRole>(database);
             userRolesTable = new UserRolesTable(database);
             userClaimsTable = new UserClaimsTable(database);
             userLoginsTable = new UserLoginsTable(database);

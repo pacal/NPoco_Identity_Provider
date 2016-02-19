@@ -2,18 +2,19 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class RoleStore<TRole>: IQueryableRoleStore<TRole> where TRole : IdentityRole
+    public class RoleStore<TRole> where TRole : IdentityRole
     {
 
-        private RoleTable roleTable;
+        private RoleTable<TRole> roleTable;
         public DataProvider Database { get; set; }
 
         public RoleStore(DataProvider database)
         {
-            roleTable = new RoleTable(database);
+            roleTable = new RoleTable<TRole>(database);
             Database = database;
         }
 
@@ -67,7 +68,7 @@ namespace Pacal.NPoco_Idenity_Provider
             return Task.FromResult<TRole>(result);
         }
 
-        public IQueryable<TRole> Roles { get; }
+        public IQueryProviderWithIncludes<TRole> Roles => Database.GetNPocoIqProviderWithIncludes<TRole>();
 
         public void Dispose()
         {

@@ -27,13 +27,13 @@ namespace Pacal.NPoco_Idenity_Provider
         }
 
         public TUser GetUserByName(string userName)
-        {            
+        {
             return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() {{"UserName", userName}});
         }
 
         public TUser GetUserByEmail(string email)
         {
-            return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() { { "Email", email } });
+            return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() {{"Email", email}});
         }
 
         public string GetPasswordHash(string userId)
@@ -80,6 +80,9 @@ namespace Pacal.NPoco_Idenity_Provider
         /// <summary>
         /// 
         /// </summary>
-        public IQueryProviderWithIncludes<TUser> Users => (IQueryProviderWithIncludes<TUser>) _database.Users;
+        public IQueryProviderWithIncludes<TUser> Users
+        {
+            get { return _database.GetNPocoIqProviderWithIncludes<TUser>(); }
+        }
     }
 }
