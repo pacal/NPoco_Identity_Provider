@@ -80,6 +80,6 @@ namespace Pacal.NPoco_Idenity_Provider
         /// <summary>
         /// 
         /// </summary>
-        public IQueryProviderWithIncludes<TUser> Users => (IQueryProviderWithIncludes<TUser>) _database.Users;
+        public IQueryProviderWithIncludes<TUser> Users => _database.GetNPocoIqProviderWithIncludes<TUser>();
     }
 }

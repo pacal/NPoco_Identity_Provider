@@ -208,16 +208,13 @@ namespace Pacal.NPoco_Idenity_Provider
             return ret;
         }
 
-        public IQueryProviderWithIncludes<IdentityUser> Users
-        {
-            get
-            {               
+        public IQueryProviderWithIncludes<TPoco> GetNPocoIqProviderWithIncludes<TPoco>()
+        { 
                 using (_connection)
                 {
-                    var iq = _connection.Query<IdentityUser>();
+                    var iq = _connection.Query<TPoco>();
                     return iq;
-                }
-            }
+                }           
         }
 
         public void Dispose()
