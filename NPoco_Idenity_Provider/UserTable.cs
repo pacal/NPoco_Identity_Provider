@@ -9,7 +9,7 @@ using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    class UserTable<TUser> where TUser : IdentityUser
+    class UserTable<TUser> where TUser : class, INPocoIdentity
     {
         private DataProvider _database;
 
@@ -22,7 +22,7 @@ namespace Pacal.NPoco_Idenity_Provider
         public TUser GetUserById(string userId)
         {
             TUser user = null;
-            user = (TUser) _database.GetPocobyId<TUser>(userId);
+            user = _database.GetPocobyId<TUser>(userId);
 
             return user;
         }

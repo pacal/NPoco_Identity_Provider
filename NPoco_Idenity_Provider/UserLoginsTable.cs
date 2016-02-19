@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserLoginsTable
+    public class UserLoginsTable<TUser> where TUser: class, INPocoIdentity
     {
         private DataProvider _database;
 
@@ -16,7 +16,7 @@ namespace Pacal.NPoco_Idenity_Provider
             _database = database;
         }
 
-        public int Delete(IdentityUser user, UserLoginInfo login)
+        public int Delete(TUser user, UserLoginInfo login)
         {
             return _database.DeletePocoWhere<UserLogin>(new Dictionary<string, string>()
             {
@@ -26,7 +26,7 @@ namespace Pacal.NPoco_Idenity_Provider
             });
         }
 
-        public string Insert(IdentityUser user, UserLoginInfo login)
+        public string Insert(TUser user, UserLoginInfo login)
         {
             return _database.Insert<string, UserLogin>(new UserLogin {LoginProvider = login.LoginProvider, ProviderKey = login.ProviderKey, UserId = user.Id});
         }

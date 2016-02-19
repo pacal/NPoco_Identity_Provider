@@ -12,7 +12,6 @@ namespace Pacal.NPoco_Idenity_Provider
     [PrimaryKey("Id", AutoIncrement = false)]
     public class IdentityRole : IRole
     {
-
         public IdentityRole()
         {
             Id = Guid.NewGuid().ToString();
