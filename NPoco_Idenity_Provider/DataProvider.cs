@@ -13,7 +13,6 @@ namespace Pacal.NPoco_Idenity_Provider
         public delegate List<TResult> QueryMethod<TResult, in T1, in T2>(T1 sql, T2 args);
         public delegate int ActionMethod<in T1, in T2>(T1 sql, T2 args);
 
-
         public DataProvider(string connectionStringName, DatabaseType dbType)
         {
             _connection = new Database(connectionStringName, dbType);

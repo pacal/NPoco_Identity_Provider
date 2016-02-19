@@ -18,8 +18,8 @@ namespace Pacal.NPoco_Idenity_Provider
         IUserTwoFactorStore<TUser, string>,
         IUserLockoutStore<TUser, string>,
         IUserStore<TUser>
-        where TUser : IdentityUser
-        where TRole : IdentityRole
+        where TUser :  IdentityUser
+
     {
         private UserTable<TUser> userTable;
         private RoleTable<TRole> roleTable;
