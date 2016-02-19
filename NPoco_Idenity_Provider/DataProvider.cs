@@ -64,16 +64,15 @@ namespace Pacal.NPoco_Idenity_Provider
                 ret = qry(sql, p);
             }
          
-
             return ret;
         }
 
         public int DeletePocoWhere<TPoco>(Dictionary<string, string> Props)
         {
-            return ActionPocoWhere<TPoco>(Props, _connection.Delete<TPoco>);
+            return ActionPocoWhere(Props, _connection.Delete<TPoco>);
         }
 
-        private int ActionPocoWhere<TPoco>(Dictionary<string, string> Props, ActionMethod<string, object[]> qry )
+        private int ActionPocoWhere(Dictionary<string, string> Props, ActionMethod<string, object[]> qry )
         {
             int ret;
             object[] p;
@@ -84,7 +83,6 @@ namespace Pacal.NPoco_Idenity_Provider
            
                 ret = qry(sql, p);
             }
-
 
             return ret;
         }
@@ -110,6 +108,7 @@ namespace Pacal.NPoco_Idenity_Provider
                 p[cnt] = prop.Value;
                 cnt++;
             }
+
             return sql;
         }       
 

@@ -8,7 +8,6 @@ namespace Pacal.NPoco_Idenity_Provider
 {
     public class RoleStore<TRole>
     {
-
         private RoleTable<TRole> roleTable;
         public DataProvider Database { get; set; }
 

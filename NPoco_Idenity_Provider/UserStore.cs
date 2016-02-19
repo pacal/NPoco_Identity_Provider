@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,7 +17,7 @@ namespace Pacal.NPoco_Idenity_Provider
         IUserTwoFactorStore<TUser, string>,
         IUserLockoutStore<TUser, string>,
         IUserStore<TUser>
-        where TUser :  class, INPocoIdentity
+        where TUser : class, INPocoIdentity
         where TRole : IRole
 
     {
