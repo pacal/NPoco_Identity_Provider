@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserRolesTable
+    public class UserRolesTable<TUser> where TUser: INPocoIdentity
     {
         private DataProvider _database;
         
@@ -28,13 +28,13 @@ namespace Pacal.NPoco_Idenity_Provider
             return _database.ExecuteRawScalar(sql, userId);
         }
 
-        public int Insert(IdentityUser user, string roleId)
+        public int Insert(TUser user, string roleId)
         {
             string sql = "Insert into AspNetUserRoles (UserId, RoleId) values (@0, @1)";
             return _database.ExecuteRawScalar(sql, user.Id, roleId);
         }
 
-        public int RemoveUserFromRole(IdentityUser user, string roleName)
+        public int RemoveUserFromRole(TUser user, string roleName)
         {
             string sql = @"DELETE u FROM AspNetUserRoles u
                                                 Inner join AspNetRoles r

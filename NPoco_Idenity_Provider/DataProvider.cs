@@ -13,7 +13,6 @@ namespace Pacal.NPoco_Idenity_Provider
         public delegate List<TResult> QueryMethod<TResult, in T1, in T2>(T1 sql, T2 args);
         public delegate int ActionMethod<in T1, in T2>(T1 sql, T2 args);
 
-
         public DataProvider(string connectionStringName, DatabaseType dbType)
         {
             _connection = new Database(connectionStringName, dbType);
@@ -65,16 +64,15 @@ namespace Pacal.NPoco_Idenity_Provider
                 ret = qry(sql, p);
             }
          
-
             return ret;
         }
 
         public int DeletePocoWhere<TPoco>(Dictionary<string, string> Props)
         {
-            return ActionPocoWhere<TPoco>(Props, _connection.Delete<TPoco>);
+            return ActionPocoWhere(Props, _connection.Delete<TPoco>);
         }
 
-        private int ActionPocoWhere<TPoco>(Dictionary<string, string> Props, ActionMethod<string, object[]> qry )
+        private int ActionPocoWhere(Dictionary<string, string> Props, ActionMethod<string, object[]> qry )
         {
             int ret;
             object[] p;
@@ -85,7 +83,6 @@ namespace Pacal.NPoco_Idenity_Provider
            
                 ret = qry(sql, p);
             }
-
 
             return ret;
         }
@@ -111,6 +108,7 @@ namespace Pacal.NPoco_Idenity_Provider
                 p[cnt] = prop.Value;
                 cnt++;
             }
+
             return sql;
         }       
 
@@ -209,14 +207,13 @@ namespace Pacal.NPoco_Idenity_Provider
         }
 
         public IQueryProviderWithIncludes<TPoco> GetNPocoIqProviderWithIncludes<TPoco>()
-        {
-            using (_connection)
-            {
-                var iq = _connection.Query<TPoco>();
-                return iq;
-            }
+        { 
+                using (_connection)
+                {
+                    var iq = _connection.Query<TPoco>();
+                    return iq;
+                }           
         }
-
 
         public void Dispose()
         {

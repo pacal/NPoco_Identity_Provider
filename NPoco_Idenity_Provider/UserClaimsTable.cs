@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserClaimsTable
+    public class UserClaimsTable<TUser> where TUser : class, INPocoIdentity
     {
         private DataProvider _database;
 
@@ -22,7 +22,7 @@ namespace Pacal.NPoco_Idenity_Provider
             return userClaims.Select(c => new Claim(c.ClaimType, c.ClaimValue)).ToList();
         }
 
-        public int DeleteSingleclaim(IdentityUser user, Claim claim)
+        public int DeleteSingleclaim(TUser user, Claim claim)
         {
             return _database.DeletePocoWhere<UserClaim>(new Dictionary<string, string>()
                 {
@@ -32,7 +32,7 @@ namespace Pacal.NPoco_Idenity_Provider
                 });
         }
 
-        public int Insert(IdentityUser user, Claim claim)
+        public int Insert(TUser user, Claim claim)
         {
             var newUserClaim = new UserClaim()
             {

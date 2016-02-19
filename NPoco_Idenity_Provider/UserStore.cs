@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,14 +17,15 @@ namespace Pacal.NPoco_Idenity_Provider
         IUserTwoFactorStore<TUser, string>,
         IUserLockoutStore<TUser, string>,
         IUserStore<TUser>
-        where TUser : IdentityUser
-        where TRole : IdentityRole
+        where TUser : class, INPocoIdentity
+        where TRole : IRole
+
     {
         private UserTable<TUser> userTable;
         private RoleTable<TRole> roleTable;
-        private UserRolesTable userRolesTable;
-        private UserClaimsTable userClaimsTable;
-        private UserLoginsTable userLoginsTable;
+        private UserRolesTable<TUser> userRolesTable;
+        private UserClaimsTable<TUser> userClaimsTable;
+        private UserLoginsTable<TUser> userLoginsTable;
         public DataProvider Database { get; private set; }
 
         public UserStore(DataProvider database)
@@ -33,12 +33,12 @@ namespace Pacal.NPoco_Idenity_Provider
             Database = database;
             userTable = new UserTable<TUser>(database);
             roleTable = new RoleTable<TRole>(database);
-            userRolesTable = new UserRolesTable(database);
-            userClaimsTable = new UserClaimsTable(database);
-            userLoginsTable = new UserLoginsTable(database);
+            userRolesTable = new UserRolesTable<TUser>(database);
+            userClaimsTable = new UserClaimsTable<TUser>(database);
+            userLoginsTable = new UserLoginsTable<TUser>(database);
         }
 
-        public IQueryProviderWithIncludes<TUser>  Users => (IQueryProviderWithIncludes<TUser>) userTable.Users;
+        public IQueryProviderWithIncludes<TUser>  Users => userTable.Users;
 
         public Task AddClaimAsync(TUser user, Claim claim)
         {

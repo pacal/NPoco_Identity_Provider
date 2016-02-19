@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INPocoIdentity.cs" />
     <Compile Include="RoleStore.cs" />
     <Compile Include="UserClaim.cs" />
     <Compile Include="RoleTable.cs" />

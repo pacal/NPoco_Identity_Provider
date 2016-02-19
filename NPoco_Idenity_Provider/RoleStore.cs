@@ -6,9 +6,8 @@ using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class RoleStore<TRole> where TRole : IdentityRole
+    public class RoleStore<TRole>
     {
-
         private RoleTable<TRole> roleTable;
         public DataProvider Database { get; set; }
 
@@ -56,14 +55,14 @@ namespace Pacal.NPoco_Idenity_Provider
 
         public Task<TRole> FindByIdAsync(string roleId)
         {
-            TRole result = roleTable.GetRoleById(roleId) as TRole;
+            TRole result = roleTable.GetRoleById(roleId);
 
             return Task.FromResult<TRole>(result);
         }
 
         public Task<TRole> FindByNameAsync(string roleName)
         {
-            TRole result = roleTable.GetRoleByName(roleName) as TRole;
+            TRole result = roleTable.GetRoleByName(roleName);
 
             return Task.FromResult<TRole>(result);
         }

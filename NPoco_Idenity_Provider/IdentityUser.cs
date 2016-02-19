@@ -11,7 +11,7 @@ namespace Pacal.NPoco_Idenity_Provider
 {
     [TableName("AspNetUsers")]
     [PrimaryKey("Id", AutoIncrement = false)]
-    public class IdentityUser : IUser
+    public class IdentityUser : INPocoIdentity
     {
         public IdentityUser()
         {

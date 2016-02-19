@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class RoleTable<TRole> where TRole : IdentityRole
+    public class RoleTable<TRole>
     {
         private DataProvider _database;
 
@@ -30,12 +31,12 @@ namespace Pacal.NPoco_Idenity_Provider
             return _database.Insert<string, TRole>(role);
         }
 
-        public IdentityRole GetRoleById(string roledId)
+        public TRole GetRoleById(string roledId)
         {
             return _database.GetPocobyId<TRole>(roledId);
         }
 
-        public IdentityRole GetRoleByName(string roleName)
+        public TRole GetRoleByName(string roleName)
         {
             return _database.GetPocoWhereSingle<TRole>(new Dictionary<string, string>() {{"Name", roleName}});
         }
@@ -44,5 +45,7 @@ namespace Pacal.NPoco_Idenity_Provider
         {
             return _database.Update<TRole>(role);
         }
+
+        public IQueryProviderWithIncludes<TRole> Roles => _database.GetNPocoIqProviderWithIncludes<TRole>();
     }
 }

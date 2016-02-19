@@ -8,7 +8,7 @@ namespace Pacal.NPoco_Identity_Provider_Tests
     public class DatabaseFixture : IDisposable
     {
 
-        readonly string connString = "server = localhost\\sqlexpress;initial catalog = aspnet-IdentityTest; persist security info=True;Integrated Security = SSPI;";        
+        readonly string connString = "server = localhost\\sqlexpress;initial catalog = aspnet_NPoco_Identiy_Provider; persist security info=True;Integrated Security = SSPI;";        
         public UserStore<IdentityUser, IdentityRole> UserStore { get; private set; }
         public RoleStore<IdentityRole> RoleStore { get; private set; }
         // used for setup

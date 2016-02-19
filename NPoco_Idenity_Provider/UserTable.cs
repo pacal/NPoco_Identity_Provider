@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NPoco;
 using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    class UserTable<TUser> where TUser : IdentityUser
+    class UserTable<TUser> where TUser : class, INPocoIdentity
     {
         private DataProvider _database;
 
@@ -21,19 +17,19 @@ namespace Pacal.NPoco_Idenity_Provider
         public TUser GetUserById(string userId)
         {
             TUser user = null;
-            user = (TUser) _database.GetPocobyId<TUser>(userId);
+            user = _database.GetPocobyId<TUser>(userId);
 
             return user;
         }
 
         public TUser GetUserByName(string userName)
-        {
+        {            
             return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() {{"UserName", userName}});
         }
 
         public TUser GetUserByEmail(string email)
         {
-            return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() {{"Email", email}});
+            return _database.GetPocoWhereSingle<TUser>(new Dictionary<string, string>() { { "Email", email } });
         }
 
         public string GetPasswordHash(string userId)
@@ -80,9 +76,6 @@ namespace Pacal.NPoco_Idenity_Provider
         /// <summary>
         /// 
         /// </summary>
-        public IQueryProviderWithIncludes<TUser> Users
-        {
-            get { return _database.GetNPocoIqProviderWithIncludes<TUser>(); }
-        }
+        public IQueryProviderWithIncludes<TUser> Users => _database.GetNPocoIqProviderWithIncludes<TUser>();
     }
 }
