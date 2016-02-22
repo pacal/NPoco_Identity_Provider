@@ -339,6 +339,30 @@ namespace Pacal.NPoco_Identity_Provider_Tests
             Assert.Equal(shouldBeNullUser.Result, null);
         }
 
+        [Fact]
+        public async void IQueryProviderWithIncludesTest()
+        {
+            for (var x = 0; x <= 50; x++)
+            {
+                IdentityUser u = new IdentityUser("Q_User_Test" + x);
+                u.Id = Guid.NewGuid().ToString();
+                await fixture.UserStore.CreateAsync(u);
+            }
+
+            var iqUsers = fixture.UserStore.Users;
+            var o = iqUsers.Where(x => x.UserName.EndsWith("3"));
+            var threeList = o.ToList();
+
+            Assert.Equal(5, threeList.Count);
+
+            var iqUsers2 = fixture.UserStore.Users;
+            var a = iqUsers2.Where(x => x.UserName.Contains("0"));
+            var zeroList = a.ToList();
+
+            Assert.Equal(6, zeroList.Count);
+        }
+
+
         private void Setup()
         {
             
