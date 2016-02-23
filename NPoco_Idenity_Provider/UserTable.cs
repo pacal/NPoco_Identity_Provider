@@ -4,7 +4,7 @@ using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    class UserTable<TUser> where TUser : class, INPocoIdentity
+    class UserTable<TUser> where TUser : class, INPocoIdentity<TUser>
     {
         private DataProvider _database;
 

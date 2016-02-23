@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserLoginsTable<TUser> where TUser: class, INPocoIdentity
+    public class UserLoginsTable<TUser> where TUser: class, INPocoIdentity<TUser>
     {
         private DataProvider _database;
 

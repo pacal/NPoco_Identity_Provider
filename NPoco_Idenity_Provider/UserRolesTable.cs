@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserRolesTable<TUser> where TUser: INPocoIdentity
+    public class UserRolesTable<TUser> where TUser: class, INPocoIdentity<TUser>
     {
         private DataProvider _database;
         

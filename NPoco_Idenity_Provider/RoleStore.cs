@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 using NPoco.Linq;
 
 namespace Pacal.NPoco_Idenity_Provider

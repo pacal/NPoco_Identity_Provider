@@ -17,7 +17,7 @@ namespace Pacal.NPoco_Idenity_Provider
         IUserTwoFactorStore<TUser, string>,
         IUserLockoutStore<TUser, string>,
         IUserStore<TUser>
-        where TUser : class, INPocoIdentity
+        where TUser : class, INPocoIdentity<TUser>
         where TRole : IRole
 
     {

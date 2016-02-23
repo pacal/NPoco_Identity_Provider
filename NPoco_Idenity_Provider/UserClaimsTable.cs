@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pacal.NPoco_Idenity_Provider
 {
-    public class UserClaimsTable<TUser> where TUser : class, INPocoIdentity
+    public class UserClaimsTable<TUser> where TUser : class, INPocoIdentity<TUser>
     {
         private DataProvider _database;
 
