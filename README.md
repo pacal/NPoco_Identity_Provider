@@ -19,7 +19,7 @@ After those requirements are referenced in the projects you will be able to buil
 ### Running the unit tests
 To run the tests update the connection string to point to your test database which has instance of the Identity schema (see below). 
 
-
+### The quickset way to get started is to use one of the [Solution Templates] (https://github.com/pacal/NPocoIdentity_WebApp_Template)
 
 ### Installing the Identity Schema.
 The NPoco Identity provider relies on the Microsoft Identity schema. When you start a new project in Visual Studio and use the WebApplication template with "Individual User Account" option, it will create a SQL Server compact edition file and update the connection string. When you create register a new user for the first time, the backing Entity Framework provider will initialize the table schema. 
