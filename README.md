@@ -1,5 +1,6 @@
-## Quick start:
+#### Note: any questions, please feel free to email me or open an issue.
 
+## Quick start:
 * Download the [NPocoIdentity_WebApp_Template](https://github.com/pacal/NPocoIdentity_WebApp_Template) zip via the "Download Zip" button and unzip into a working directory
 * If you want to see a custom implementation of the NPoco Identity User download from the [Implement_INPocoIdentity Branch](https://github.com/pacal/NPocoIdentity_WebApp_Template/tree/Implement_INPocoIdentity)
 or
