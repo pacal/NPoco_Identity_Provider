@@ -1,10 +1,15 @@
 ## Quick start:
-* Download the [NPocoIdentity_WebApp_Template](https://github.com/pacal/NPocoIdentity_WebApp_Template) zip via the "Download Zip" button and unzip into a working directory
-OR
-* If you want to see a custom implementation of the NPoco Identity User download from the [Implement_INPocoIdentity Branch](https://github.com/pacal/NPocoIdentity_WebApp_Template/tree/Implement_INPocoIdentity)
+__Option 1__:
 
-OR
-* Install-Package NPoco_Identity_Provider via nuget and start from scratch
+Download the [NPocoIdentity_WebApp_Template](https://github.com/pacal/NPocoIdentity_WebApp_Template) zip via the "Download Zip" button and unzip into a working directory
+
+__Option 2__:
+
+If you want to see a custom implementation of the NPoco Identity User download from the [Implement_INPocoIdentity Branch](https://github.com/pacal/NPocoIdentity_WebApp_Template/tree/Implement_INPocoIdentity)
+
+__Option 3__:
+
+Install-Package NPoco_Identity_Provider via nuget and start from scratch
 
 The templates will look very familiar to most people as it is based on the ASP.Net 4.52 MVC Template using the Individual User Account Authentication option
 
