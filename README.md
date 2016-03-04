@@ -1,9 +1,7 @@
-#### Note: any questions, please feel free to email me or open an issue.
-
 ## Quick start:
 * Download the [NPocoIdentity_WebApp_Template](https://github.com/pacal/NPocoIdentity_WebApp_Template) zip via the "Download Zip" button and unzip into a working directory
 * If you want to see a custom implementation of the NPoco Identity User download from the [Implement_INPocoIdentity Branch](https://github.com/pacal/NPocoIdentity_WebApp_Template/tree/Implement_INPocoIdentity)
-or
+* Install-Package NPoco_Identity_Provider via nuget
 
 The templates will look very familiar to most people as it is based on the ASP.Net 4.52 MVC Template using the Individual User Account Authentication option
 
@@ -87,3 +85,5 @@ The NPoco Identity provider relies on the Microsoft Identity schema. When you st
 
 Of course since we are ripping out EF, the above is not applicable. So you can use the templates listed above. Or manually create the Db.
 You can use the SQL scripts located in the repo [Identity_SQL](https://github.com/pacal/Identity_SQL "Identity_SQL creation scripts"). Edit the variables at the top for the database name and filepath. Fire up SQL Management studio and run it against the server. It will create the database and all needed tables.
+
+#### Note: Any questions? Please feel free to email me or open an issue.
