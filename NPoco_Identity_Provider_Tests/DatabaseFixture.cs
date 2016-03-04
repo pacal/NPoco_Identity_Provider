@@ -7,8 +7,9 @@ namespace Pacal.NPoco_Identity_Provider_Tests
 {
     public class DatabaseFixture : IDisposable
     {
-
-        readonly string connString = "server = localhost\\sqlexpress;initial catalog = aspnet_NPoco_Identiy_Provider; persist security info=True;Integrated Security = SSPI;";        
+        string executionPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+        string connString = string.Empty;
+        //readonly string connString = "server = localhost\\sqlexpress;initial catalog = aspnet_NPoco_Identiy_Provider; persist security info=True;Integrated Security = SSPI;";        
         public UserStore<IdentityUser, IdentityRole> UserStore { get; private set; }
         public RoleStore<IdentityRole> RoleStore { get; private set; }
         // used for setup
@@ -16,6 +17,8 @@ namespace Pacal.NPoco_Identity_Provider_Tests
 
         public DatabaseFixture()
         {
+            executionPath = executionPath.Replace("file:\\", "");
+            connString = string.Format(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename={0}\NPocoIdentityTest.mdf;Integrated Security=True", executionPath );
             UserStore = new UserStore<IdentityUser, IdentityRole>(new DataProvider(connString, DatabaseType.SqlServer2012));
             RoleStore = new RoleStore<IdentityRole>(new DataProvider(connString, DatabaseType.SqlServer2012));
             RawDB = new Database(connString, DatabaseType.SqlServer2012);
