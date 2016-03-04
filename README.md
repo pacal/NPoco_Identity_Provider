@@ -86,4 +86,4 @@ The NPoco Identity provider relies on the Microsoft Identity schema. When you st
 Of course since we are ripping out EF, the above is not applicable. So you can use the templates listed above. Or manually create the Db.
 You can use the SQL scripts located in the repo [Identity_SQL](https://github.com/pacal/Identity_SQL "Identity_SQL creation scripts"). Edit the variables at the top for the database name and filepath. Fire up SQL Management studio and run it against the server. It will create the database and all needed tables.
 
-#### Note: Any questions? Please feel free to email me or open an issue.
+#### Any questions? Please feel free to email me or open an issue.
