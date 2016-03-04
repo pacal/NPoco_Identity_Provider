@@ -78,7 +78,7 @@ While it of course allows you to set the Twofactor store values, you are respons
         }
     }
 ```
-This example adds: Comment, Age, and Title to the custom Identity User. You will of course need to make sure you Database Schema reflects these new columns. 
+This example adds: Comment, Age, and Title to the custom Identity User. You will of course need to make sure your Database Schema reflects these new columns. 
 As you can see we also have the NPoco attributes as well.
 
 ### Installing the Identity Schema
