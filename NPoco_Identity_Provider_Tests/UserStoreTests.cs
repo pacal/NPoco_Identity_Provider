@@ -26,12 +26,33 @@ namespace Pacal.NPoco_Identity_Provider_Tests
         [Fact]
         public async Task IUserStoreTests()
         {
+            var defaultUser = new IdentityUser("TestUserName1");
+            await IUserStoreGeneric<IdentityUser, IdentityRole>(defaultUser, fixture.UserStore);
+
+            // Just in case, clean up any cols
+            CleanUpCustomCols(); 
+            // Add new columns to default schema
+            fixture.RawDB.Execute(@"ALTER TABLE AspNetUsers
+                                    ADD Comment NVARCHAR(max),
+                                    Title VARCHAR(256),
+                                    Age INT");
+
+
+            var myUser = new MyCustomUser("TestUserName1");
+            await IUserStoreGeneric<MyCustomUser, MyCustomRole>(myUser, fixture.UserStoreCustom);
+
+            // always clean up after test
+            CleanUpCustomCols();
+
+        }
+
+        public async Task IUserStoreGeneric<T,A>(T TUser, UserStore<T, A> Store ) where T : class, INPocoIdentity<T> where A : IRole
+        {
             // Create
-            IdentityUser u = new IdentityUser("TestUserName1");
-            u.Id = Guid.NewGuid().ToString();
-            //await _fixture.UserStore.CreateAsync(u);
+            var u = TUser;
+                       
             output.WriteLine("Creating using TestUserName1");
-            await fixture.UserStore.CreateAsync(u);
+            await Store.CreateAsync(u);
 
             // Get
             var fetchedUser =  await fixture.UserStore.FindByNameAsync("TestUserName1");
@@ -362,7 +383,6 @@ namespace Pacal.NPoco_Identity_Provider_Tests
             Assert.Equal(6, zeroList.Count);
         }
 
-
         private void Setup()
         {
             
@@ -373,6 +393,25 @@ namespace Pacal.NPoco_Identity_Provider_Tests
                                             DELETE FROM AspNetRoles");
 
 
+        }
+
+        private void CleanUpCustomCols()
+        {
+            DropColumn("Comment");
+            DropColumn("Title");
+            DropColumn("Age");
+        }
+
+        private void DropColumn(string colName)
+        {
+            string s = string.Format(@"IF EXISTS(SELECT * FROM sys.columns 
+            WHERE Name = N'{0}' AND Object_ID = Object_ID(N'AspNetUsers'))
+            BEGIN
+                Alter Table AspNetUsers
+                Drop Column {0}
+            END", colName);
+
+            fixture.RawDB.Execute(s);
         }
 
         public void Dispose()
